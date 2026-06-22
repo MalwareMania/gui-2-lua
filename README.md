@@ -6,7 +6,7 @@ A new Gui 2 lua script implemented directly in lua
 
 Some people might try to copy a frame in a Roblox game but they'd have to recreate it with the same properties each time
 
-## Gui 2 Lua automatically dumps every property in the frame, screengui, etc and returns it as a script that can be executed directly
+## Gui 2 Lua automatically dumps every property in the Frame, ScreenGui, Etc and returns it as a script that can be executed directly
 
 **Changelog:**
 
