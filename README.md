@@ -11,7 +11,9 @@ Gui 2 Lua automatically dumps every property in the frame, screengui, etc and re
 **Changelog:**
 
 • Fixed UIStroke properties not being set
+
 • Added an extra properties table for new properties you'd wanna add
+
 • Added all unique properties and main properties
 
 V1.1.0
