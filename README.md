@@ -16,4 +16,6 @@ Some people might try to copy a frame in a Roblox game but they'd have to recrea
 
 • Added all unique properties and main properties
 
-V1.1.0
+• Fixed Size and Position not being set
+
+V1.2.0
