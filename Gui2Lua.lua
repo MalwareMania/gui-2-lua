@@ -1,6 +1,7 @@
 -- Gui2Lua Implemented in lua
 
 -- Set Instance at the bottom to the instance you wanna dump
+-- V1.2.0
 
 local CollectionService = game:GetService("CollectionService")
 
@@ -310,10 +311,6 @@ local function Skip(object, propertyName, value)
 	return defaultValue ~= false and value == defaultValue
 end
 
-local function MakeName(index, object)
-	return ("obj_%03d_%s"):format(index, object.ClassName:gsub("%W", "_"))
-end
-
 local function Dump(root, rootPE)
 	assert(typeof(root) == "Instance", "dump expects an Instance")
 
@@ -324,7 +321,7 @@ local function Dump(root, rootPE)
 
 	local refs = {}
 	for index, object in ipairs(objects) do
-		refs[object] = MakeName(index, object)
+		refs[object] = ("objects[%d]"):format(index)
 	end
 
 	local lines = {
@@ -338,11 +335,13 @@ local function Dump(root, rootPE)
 		"\tend",
 		"end",
 		"",
+		"local objects = {}",
+		"",
 	}
 
 	for index, object in ipairs(objects) do
 		local ref = refs[object]
-		table.insert(lines, ("local %s = Instance.new(%q)"):format(ref, object.ClassName))
+		table.insert(lines, ("%s = Instance.new(%q)"):format(ref, object.ClassName))
 
 		if object ~= root then
 			table.insert(lines, ("%s.Parent = %s"):format(ref, refs[object.Parent] or "nil"))
@@ -350,9 +349,9 @@ local function Dump(root, rootPE)
 
 		for _, PropName in ipairs(GetPropertyNames(object)) do
 			if PropName ~= "Parent" then
-				local ok, value = ReadProperty(object, propertyName)
+				local ok, value = ReadProperty(object, PropName)
 				local serialized = ok and Serialize(value, refs)
-				if serialized and (ALWAYS_WRITE_CLASS_PROPERTIES[object.ClassName] or not Skip(object, propertyName, value)) then
+				if serialized and (ALWAYS_WRITE_CLASS_PROPERTIES[object.ClassName] or not Skip(object, PropName, value)) then
 					table.insert(lines, ("SetProperty(%s, %q, %s)"):format(ref, PropName, serialized))
 				end
 			end
@@ -399,4 +398,4 @@ end
 -- Put your instance here
 local Instance = nil
 
-setclipboard(dump(Instance, [[--Dump output here]]))
+setclipboard(Dump(Instance, [[--Dump output's here]]))
