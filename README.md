@@ -54,8 +54,6 @@ Gui2Lua.AddExtraProperties("*", { "GlobalHiddenProp" }) -- applies to all classe
 
 • Fixed Size and Position not being set
 
-• Fixed Size and Position not being set
-
 • Remade to a loadstring compatible library
 
 • Added `Gui2Lua.SetOptions()` to configure options when dumping
