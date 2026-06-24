@@ -2,7 +2,7 @@
 
 A new Gui 2 lua script implemented directly in lua
 
-# What for?
+## What for?
 
 Some people might try to copy a frame in a Roblox game but they'd have to recreate it with the same properties each time
 
