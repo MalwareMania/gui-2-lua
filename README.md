@@ -40,7 +40,7 @@ Gui2Lua.SetOptions({
 Include more or hidden properties
 
 ```lua
-Gui2Lua.AddExtraProperties("Frame", { "SomeHiddenProp" })
+Gui2Lua.AddExtraProperties("Frame", { "HiddenProp" })
 Gui2Lua.AddExtraProperties("*", { "GlobalHiddenProp" }) -- applies to all classes
 ```
 
